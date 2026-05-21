@@ -798,7 +798,10 @@
     var rect = anchor.getBoundingClientRect();
     var menu = document.createElement('div');
     menu.id = 't3-nav-menu';
-    menu.style.cssText = 'position:fixed !important;top:'+(rect.bottom+8)+'px;right:'+(window.innerWidth - rect.right)+'px;z-index:99999;background:#0a0e1a !important;border:1px solid rgba(255,255,255,.12) !important;border-radius:12px;padding:6px;min-width:240px;box-shadow:0 18px 40px rgba(0,0,0,.75);animation:t3-toolsmenu-in .18s ease forwards;transform-origin:top right;backdrop-filter:none !important';
+    var navPosCSS = isMobileViewport()
+      ? 'top:'+(rect.bottom+8)+'px;left:8px;right:8px;'
+      : 'top:'+(rect.bottom+8)+'px;right:'+(window.innerWidth - rect.right)+'px;min-width:240px;';
+    menu.style.cssText = 'position:fixed !important;'+navPosCSS+'z-index:99999;background:#0a0e1a !important;border:1px solid rgba(255,255,255,.12) !important;border-radius:12px;padding:6px;box-shadow:0 18px 40px rgba(0,0,0,.75);animation:t3-toolsmenu-in .18s ease forwards;transform-origin:top right;backdrop-filter:none !important';
     navItems.forEach(function(it){
       // Badge count for this item
       var cnt = 0;
@@ -7572,7 +7575,10 @@
     var rect = anchor.getBoundingClientRect();
     var menu = document.createElement('div');
     menu.id = 't3-tools-menu';
-    menu.style.cssText = 'position:fixed !important;top:'+(rect.bottom+8)+'px;right:'+(window.innerWidth - rect.right)+'px;z-index:99999;background:#0a0e1a !important;background-color:#0a0e1a !important;border:1px solid rgba(255,255,255,.12) !important;border-radius:12px;padding:6px;min-width:230px;box-shadow:0 18px 40px rgba(0,0,0,.75);animation:t3-toolsmenu-in .18s ease forwards;transform-origin:top right;color:#fff !important;backdrop-filter:none !important';
+    var posCSS = isMobileViewport()
+      ? 'top:'+(rect.bottom+8)+'px;left:8px;right:8px;'
+      : 'top:'+(rect.bottom+8)+'px;right:'+(window.innerWidth - rect.right)+'px;min-width:230px;';
+    menu.style.cssText = 'position:fixed !important;'+posCSS+'z-index:99999;background:#0a0e1a !important;background-color:#0a0e1a !important;border:1px solid rgba(255,255,255,.12) !important;border-radius:12px;padding:6px;box-shadow:0 18px 40px rgba(0,0,0,.75);animation:t3-toolsmenu-in .18s ease forwards;transform-origin:top right;color:#fff !important;backdrop-filter:none !important';
     function item(emoji, label, click, color){
       var i = document.createElement('button');
       i.style.cssText = 'display:flex !important;align-items:center;gap:10px;width:100%;background:transparent !important;background-color:transparent !important;border:0 !important;color:#e2e8f0 !important;padding:10px 12px;text-align:left;cursor:pointer;font-size:13px;border-radius:8px;transition:background .12s;font-family:inherit';
